@@ -1,0 +1,7 @@
+{
+    "Data": {
+        "Database": "nwfw.db",
+        "SqlServerConnection": "Server=tcp:devclaus.database.windows.net,1433;Database=tapi;User ID=claussoegaard@devclaus;Password={pw here};Connection Timeout=30;"
+
+    }
+}
