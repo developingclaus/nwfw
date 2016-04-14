@@ -32,8 +32,24 @@ namespace nwfw.Repositories
     // Get(id)
     public OrderItem GetOrderItemById(int orderId, int id)
     {
-      var order = _orderRepo.GetOrderWithOrderItemsById(orderId);
-      return order.OrderItems.Where(o => o.Id == id).FirstOrDefault();        
+      try
+      {
+        var order = _orderRepo.GetOrderWithOrderItemsById(orderId);
+        var orderItem = order.OrderItems.Where(o => o.Id == id).FirstOrDefault();
+        
+        if (orderItem != null)
+        {
+          return orderItem;
+        }
+        return null;
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError($"Could find OrderItem with Id: {id}", ex);
+        return null;
+      }
+      
+           
     }
     
     // Post
@@ -44,11 +60,15 @@ namespace nwfw.Repositories
       _context.OrderItems.Add(newOrderItem);
     }
 
-    // Put
-    public void PutOrderItem(OrderItem updatedOrderItem)
+    // Put(id)
+    public void PutOrderItem(int orderId, OrderItem updatedOrderItem)
     {
       try
-      {        
+      {       
+        var order = _orderRepo.GetOrderWithOrderItemsById(orderId);
+        var orderItem = order.OrderItems.Where(o => o.Id == updatedOrderItem.Id).FirstOrDefault();
+        order.OrderItems.Remove(orderItem);
+        order.OrderItems.Add(updatedOrderItem);
         _context.OrderItems.Update(updatedOrderItem);
       }
       catch (Exception ex)
@@ -57,9 +77,19 @@ namespace nwfw.Repositories
       }      
     }
 
-    public OrderItem DeleteOrderItem(int id)
+    public OrderItem DeleteOrderItem(int orderId, int id)
     {
-        throw new NotImplementedException();
+      try
+      {
+        var orderItemToDelete = GetOrderItemById(orderId, id);
+        _context.OrderItems.Remove(orderItemToDelete);
+        return orderItemToDelete;
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError($"Could not delete OrderItem with Id: {id}", ex);
+        return null;
+      } 
     }
 
     public bool SaveAll()

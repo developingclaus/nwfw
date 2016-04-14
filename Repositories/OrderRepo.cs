@@ -107,6 +107,7 @@ namespace nwfw.Repositories
       }      
     }
 
+    // Delete
     public Order DeleteOrder(int id)
     {
       try

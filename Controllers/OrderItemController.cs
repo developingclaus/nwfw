@@ -86,7 +86,7 @@ namespace nwfw.Controllers
       return Json(new{message = "failed", ModelState = ModelState});
     }
 
-    // PUT api/order/5/orderitem/1
+    // PUT api/order/1/orderitem/3
     [HttpPut("{id}")]
     public JsonResult Put(int orderId, int id, [FromBody]OrderItemViewModel vm)
     {
@@ -94,20 +94,28 @@ namespace nwfw.Controllers
       {
         if (ModelState.IsValid)
         { 
+          var orderItem = _repo.GetOrderItemById(orderId, id);
+          
           if (vm.Id != id)
           {
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return Json(new {message = "Attempted to update different OrderItem"});
           }
+          
+          if (orderItem == null)
+          {
+            Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return Json(new {message = "Attempted to update OrderItem via wrong url"});
+          }
                     
-          var orderItem = _mapper.Map<OrderItem>(vm);
+          var updatedOrderItem = _mapper.Map<OrderItem>(vm);
           _logger.LogInformation("Attempting to save a new OrderItem");
-          _repo.PutOrderItem(orderItem); 
+          _repo.PutOrderItem(orderId, updatedOrderItem); 
           
           if (_repo.SaveAll())
           {
             Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(_mapper.Map<OrderItemViewModel>(orderItem));            
+            return Json(_mapper.Map<OrderItemViewModel>(updatedOrderItem));            
           }
         }
         
@@ -123,8 +131,34 @@ namespace nwfw.Controllers
 
     // DELETE api/values/5
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    public JsonResult Delete(int orderId, int id)
     {
+      try
+      {
+        var orderItem = _repo.GetOrderItemById(orderId, id);
+        
+        if (orderItem == null)
+        {
+          Response.StatusCode = (int)HttpStatusCode.BadRequest;
+          return Json(new {message = "Attempted to delete OrderItem via wrong url"});
+        }
+        
+        _logger.LogInformation("Attempting to delete an OrderItem");
+        var deletedOrderItem = _repo.DeleteOrderItem(orderId, id);
+        
+        if (_repo.SaveAll())
+        {
+          Response.StatusCode = (int)HttpStatusCode.OK;
+          return Json(_mapper.Map<OrderItemViewModel>(deletedOrderItem));   
+        }
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError("Failed to delete OrderItem", ex);
+        Response.StatusCode = (int)HttpStatusCode.BadRequest;
+        return Json(new {message = ex.Message});
+      }
+      return Json(new{message = "failed"});
     }
   }
 }

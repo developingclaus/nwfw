@@ -171,9 +171,9 @@ namespace nwfw.Models.DataSeed
         _context.Vendors.Add(vendor1);
         _context.Vendors.Add(vendor2);
         
-        _context.Woods.Add(wood1);
-        _context.Woods.Add(wood2);
-        _context.Woods.Add(wood3);
+        _context.Wood.Add(wood1);
+        _context.Wood.Add(wood2);
+        _context.Wood.Add(wood3);
         
         // _context.Products.Add(product1);
         // _context.Products.Add(product2);

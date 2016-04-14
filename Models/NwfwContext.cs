@@ -14,7 +14,7 @@ namespace nwfw.Models
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductType> ProductTypes { get; set; }
     public DbSet<Vendor> Vendors { get; set; }
-    public DbSet<Wood> Woods { get; set; }
+    public DbSet<Wood> Wood { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
