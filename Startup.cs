@@ -51,7 +51,9 @@ namespace nwfw
         .AddSqlite()
         .AddSqlServer()
         .AddDbContext<NwfwContext>();
+        
       services.AddScoped<ICustomerRepo, CustomerRepo>();
+      services.AddScoped<IOrderRepo, OrderRepo>();
       
       services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
     }

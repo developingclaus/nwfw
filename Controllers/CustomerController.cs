@@ -62,7 +62,7 @@ namespace nwfw.Controllers
       }
       catch (Exception ex)
       {
-        _logger.LogError("Failed to save new trip", ex);
+        _logger.LogError("Failed to save new Customer", ex);
         Response.StatusCode = (int)HttpStatusCode.BadRequest;
         return Json(new {message = ex.Message});
       }

@@ -13,6 +13,7 @@ namespace nwfw.Mappings
     protected override void Configure()
     {
       CreateMap<Customer, CustomerViewModel>().ReverseMap();
+      CreateMap<Order, OrderViewModel>().ReverseMap();
     }
   }
 }
