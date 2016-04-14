@@ -17,7 +17,7 @@ namespace nwfw.Repositories
     {
       _context = context;
       _logger = logger;
-    }       
+    }
 
     public IEnumerable<Customer> GetAllCustomers()
     { 
@@ -77,9 +77,43 @@ namespace nwfw.Repositories
       }
     }
     
-    public void AddCustomer(Customer newCustomer)
+    public void PostCustomer(Customer newCustomer)
     {
-      _context.Customers.Add(newCustomer);
+      try
+      {
+        _context.Customers.Add(newCustomer);        
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError($"Could not add Customer", ex);
+      }
+    }
+    
+    public void PutCustomer(Customer updatedCustomer)
+    {
+      try
+      {
+        _context.Customers.Update(updatedCustomer);
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError($"Could not update Customer with Id: {updatedCustomer.Id}", ex);
+      }      
+    }
+    
+    public Customer DeleteCustomer(int id)
+    {
+      try
+      {
+        var customerToDelete = GetCustomerById(id);
+        _context.Customers.Remove(customerToDelete);
+        return customerToDelete;
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError($"Could not delete Customer with Id: {id}", ex);
+        return null;
+      } 
     }
 
     public bool SaveAll()

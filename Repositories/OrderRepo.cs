@@ -77,11 +77,45 @@ namespace nwfw.Repositories
       }
     }
 
-    public void AddOrder(Order newOrder)
+    public void PostOrder(Order newOrder)
     {
-      _context.Orders.Add(newOrder);
+      try
+      {
+        _context.Orders.Add(newOrder);        
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError($"Could not add Order", ex);
+      }
     }
-    
+
+    public void PutOrder(Order updatedOrder)
+    {
+      try
+      {
+        _context.Orders.Update(updatedOrder);
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError($"Could not update Order with Id: {updatedOrder.Id}", ex);
+      }      
+    }
+
+    public Order DeleteOrder(int id)
+    {
+      try
+      {
+        var orderToDelete = GetOrderById(id);
+        _context.Orders.Remove(orderToDelete);
+        return orderToDelete;
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError($"Could not delete Order with Id: {id}", ex);
+        return null;
+      } 
+    }
+
     public bool SaveAll()
     {
       return _context.SaveChanges() > 0;

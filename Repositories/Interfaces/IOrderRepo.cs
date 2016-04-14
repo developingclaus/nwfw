@@ -12,7 +12,9 @@ namespace nwfw.Repositories.Interfaces
     IEnumerable<Order> GetAllOrdersWithOrderItems(); // Get
     Order GetOrderById(int id); // Get(id)
     Order GetOrderWithOrderItemsById(int id); // Get(id)
-    void AddOrder(Order newOrder);
+    void PostOrder(Order newOrder);
+    void PutOrder(Order updatedOrder);
+    Order DeleteOrder(int id);
     bool SaveAll();
   }
 }

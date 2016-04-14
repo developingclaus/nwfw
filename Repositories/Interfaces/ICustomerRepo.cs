@@ -12,7 +12,9 @@ namespace nwfw.Repositories.Interfaces
     IEnumerable<Customer> GetAllCustomersWithOrders(); // Get
     Customer GetCustomerById(int id); // Get(id)
     Customer GetCustomerWithOrdersById(int id); // Get(id)
-    void AddCustomer(Customer newCustomer);
+    void PostCustomer(Customer newCustomer);
+    void PutCustomer(Customer updatedCustomer);
+    Customer DeleteCustomer(int id);
     bool SaveAll();
   }
 }
