@@ -1,70 +1,108 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
+using AutoMapper;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
+using Microsoft.Extensions.Logging;
 using nwfw.Models;
+using nwfw.Repositories.Interfaces;
+using nwfw.ViewModels;
 
 namespace nwfw.Controllers
 {
-  [Route("api/[controller]")]
+    [Route("api/[controller]")]
   public class CustomerController : Controller
   {
-    private NwfwContext _context;
+    private ILogger<CustomerController> _logger;
+    private IMapper _mapper;
+    private ICustomerRepo _repo;
 
-    public CustomerController(NwfwContext context)
+    public CustomerController(ICustomerRepo repo, IMapper mapper, ILogger<CustomerController> logger)
     {
-      _context = context;
+      _repo = repo;
+      _mapper = mapper;
+      _logger = logger;
     }
     // GET: api/customer
     [HttpGet]
-    public Customer[] Get()
+    public JsonResult Get()
     {
-      return _context.Customers.ToArray();
+      var customers = _repo.GetAllCustomersWithOrders();
+      return Json(_mapper.Map<IEnumerable<CustomerViewModel>>(customers));
     }
 
     // GET api/values/5
     [HttpGet("{id}")]
-    public Customer Get(int id)
+    public JsonResult Get(int id)
     {
-        return Get().Where(c => c.Id == id).FirstOrDefault();
+      var customer = _repo.GetCustomerWithOrdersById(id);
+      return Json(_mapper.Map<CustomerViewModel>(customer));
     }
-
+    
     // POST api/values
     [HttpPost]
-    public void Post([FromBody]Customer customer)
+    public JsonResult Post([FromBody]CustomerViewModel vm)
     {
-      var newCustomer = new Customer()
+      try
       {
-        CustomerFirstName = customer.CustomerFirstName,
-        CustomerLastName = customer.CustomerLastName,
-        CustomerCompanyName = customer.CustomerCompanyName
-      };
-      _context.Customers.Add(newCustomer);
-      _context.SaveChanges();
-    }
-
-    // PUT api/values/5
-    [HttpPut("{id}")]
-    public void Put(int id, [FromBody]Customer customer)
-    {
-      var customerToUpdate = Get(id);
+        if (ModelState.IsValid)
+        {
+          var newCustomer = _mapper.Map<Customer>(vm);
+          
+          _logger.LogInformation("Attempting to save a new Customer");
+          _repo.AddCustomer(newCustomer);
+          
+          if (_repo.SaveAll())
+          {
+            Response.StatusCode = (int)HttpStatusCode.Created;
+            return Json(_mapper.Map<CustomerViewModel>(newCustomer));            
+          }
+          
+        }
+      }
+      catch (Exception ex)
+      {
+        _logger.LogError("Failed to save new trip", ex);
+        Response.StatusCode = (int)HttpStatusCode.BadRequest;
+        return Json(new {message = ex.Message});
+      }
       
-      customerToUpdate.CustomerFirstName = customer.CustomerFirstName;
-      customerToUpdate.CustomerLastName = customer.CustomerLastName;
-      customerToUpdate.CustomerCompanyName = customer.CustomerCompanyName;
-      
-      _context.SaveChanges();       
+      return Json(new{message = "failed", ModelState = ModelState});
     }
+    // POST api/values
+    // [HttpPost]
+    // public void Post([FromBody]Customer customer)
+    // {
+    //   var newCustomer = new Customer()
+    //   {
+    //     CustomerFirstName = customer.CustomerFirstName,
+    //     CustomerLastName = customer.CustomerLastName,
+    //     CustomerCompanyName = customer.CustomerCompanyName
+    //   };
+    //   _context.Customers.Add(newCustomer);
+    //   _context.SaveChanges();
+    // }
 
-    // DELETE api/values/5
-    [HttpDelete("{id}")]
-    public void Delete(int id)
-    {
-      var customerToDelete = Get(id);
-      _context.Customers.Remove(customerToDelete);
-      _context.SaveChanges();
-    }
+    // // PUT api/values/5
+    // [HttpPut("{id}")]
+    // public void Put(int id, [FromBody]Customer customer)
+    // {
+    //   var customerToUpdate = Get(id);
+      
+    //   customerToUpdate.CustomerFirstName = customer.CustomerFirstName;
+    //   customerToUpdate.CustomerLastName = customer.CustomerLastName;
+    //   customerToUpdate.CustomerCompanyName = customer.CustomerCompanyName;
+      
+    //   _context.SaveChanges();       
+    // }
+
+    // // DELETE api/values/5
+    // [HttpDelete("{id}")]
+    // public void Delete(int id)
+    // {
+    //   var customerToDelete = Get(id);
+    //   _context.Customers.Remove(customerToDelete);
+    //   _context.SaveChanges();
+    // }
   }
 }

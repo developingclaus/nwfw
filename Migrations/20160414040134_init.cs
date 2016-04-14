@@ -14,9 +14,11 @@ namespace nwfw.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     CustomerCompanyName = table.Column<string>(nullable: true),
                     CustomerFirstName = table.Column<string>(nullable: true),
-                    CustomerLastName = table.Column<string>(nullable: true)
+                    CustomerLastName = table.Column<string>(nullable: true),
+                    ModifiedDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,6 +30,8 @@ namespace nwfw.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
                     OrderStatusName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -40,6 +44,8 @@ namespace nwfw.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
                     OrderTypeName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -52,6 +58,8 @@ namespace nwfw.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
                     ProductTypeName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -64,6 +72,8 @@ namespace nwfw.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
                     VendorCompanyName = table.Column<string>(nullable: true),
                     VendorFirstName = table.Column<string>(nullable: true),
                     VendorLastName = table.Column<string>(nullable: true)
@@ -78,6 +88,8 @@ namespace nwfw.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
                     WoodName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -90,8 +102,10 @@ namespace nwfw.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     CustomerId = table.Column<int>(nullable: true),
                     FulfillDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
                     NwfwOrderId = table.Column<string>(nullable: true),
                     OrderDate = table.Column<DateTime>(nullable: false),
                     OrderStatusId = table.Column<int>(nullable: true),
@@ -132,6 +146,8 @@ namespace nwfw.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
                     ProductBasePrice = table.Column<double>(nullable: false),
                     ProductName = table.Column<string>(nullable: true),
                     ProductTypeId = table.Column<int>(nullable: true),
@@ -159,7 +175,9 @@ namespace nwfw.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
                     DiscountPercent = table.Column<double>(nullable: false),
+                    ModifiedDate = table.Column<DateTime>(nullable: false),
                     OrderId = table.Column<int>(nullable: true),
                     ProductId = table.Column<int>(nullable: true),
                     Quantity = table.Column<int>(nullable: false)

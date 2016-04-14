@@ -8,7 +8,7 @@ using nwfw.Models;
 namespace nwfw.Migrations
 {
     [DbContext(typeof(NwfwContext))]
-    [Migration("20160413224108_init")]
+    [Migration("20160414040134_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,11 +21,15 @@ namespace nwfw.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedDate");
+
                     b.Property<string>("CustomerCompanyName");
 
                     b.Property<string>("CustomerFirstName");
 
                     b.Property<string>("CustomerLastName");
+
+                    b.Property<DateTime>("ModifiedDate");
 
                     b.HasKey("Id");
                 });
@@ -35,9 +39,13 @@ namespace nwfw.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedDate");
+
                     b.Property<int?>("CustomerId");
 
                     b.Property<DateTime>("FulfillDate");
+
+                    b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("NwfwOrderId");
 
@@ -57,7 +65,11 @@ namespace nwfw.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedDate");
+
                     b.Property<double>("DiscountPercent");
+
+                    b.Property<DateTime>("ModifiedDate");
 
                     b.Property<int?>("OrderId");
 
@@ -73,6 +85,10 @@ namespace nwfw.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("ModifiedDate");
+
                     b.Property<string>("OrderStatusName");
 
                     b.HasKey("Id");
@@ -83,6 +99,10 @@ namespace nwfw.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("ModifiedDate");
+
                     b.Property<string>("OrderTypeName");
 
                     b.HasKey("Id");
@@ -92,6 +112,10 @@ namespace nwfw.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("ModifiedDate");
 
                     b.Property<double>("ProductBasePrice");
 
@@ -109,6 +133,10 @@ namespace nwfw.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("ModifiedDate");
+
                     b.Property<string>("ProductTypeName");
 
                     b.HasKey("Id");
@@ -118,6 +146,10 @@ namespace nwfw.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("VendorCompanyName");
 
@@ -132,6 +164,10 @@ namespace nwfw.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("WoodName");
 
