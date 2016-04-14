@@ -19,7 +19,8 @@ namespace nwfw.Repositories
       _context = context;
       _logger = logger;
     }
-
+    
+    // Get
     public IEnumerable<Order> GetAllOrders()
     {
       try
@@ -32,7 +33,8 @@ namespace nwfw.Repositories
         return null;
       }
     }
-
+    
+    // Get
     public IEnumerable<Order> GetAllOrdersWithOrderItems()
     {
       try
@@ -49,6 +51,7 @@ namespace nwfw.Repositories
       }
     }
     
+    // Get(id)
     public Order GetOrderById(int id)
     {
       try
@@ -61,7 +64,8 @@ namespace nwfw.Repositories
         return null;
       }
     }
-
+    
+    // Get(id)
     public Order GetOrderWithOrderItemsById(int id)
     {
       try
@@ -77,6 +81,7 @@ namespace nwfw.Repositories
       }
     }
 
+    // Post
     public void PostOrder(Order newOrder)
     {
       try
@@ -89,6 +94,7 @@ namespace nwfw.Repositories
       }
     }
 
+    // Put
     public void PutOrder(Order updatedOrder)
     {
       try

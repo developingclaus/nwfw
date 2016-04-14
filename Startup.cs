@@ -54,6 +54,7 @@ namespace nwfw
         
       services.AddScoped<ICustomerRepo, CustomerRepo>();
       services.AddScoped<IOrderRepo, OrderRepo>();
+      services.AddScoped<IOrderItemRepo, OrderItemRepo>();
       
       services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
     }
