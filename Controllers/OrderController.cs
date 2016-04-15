@@ -30,6 +30,7 @@ namespace nwfw.Controllers
     public JsonResult Get()
     {
       var orders = _repo.GetAllOrdersWithOrderItems();
+      // return Json(orders);
       return Json(_mapper.Map<IEnumerable<OrderViewModel>>(orders));
     }
 

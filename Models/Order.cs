@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace nwfw.Models
 {
@@ -12,7 +13,7 @@ namespace nwfw.Models
     // public OrderType OrderType { get; set; }   
     // public OrderStatus OrderStatus { get; set; }   
     // public Customer Customer { get; set; }   
-    public Vendor Vendor { get; set; }   
+    public virtual Vendor Vendor { get; set; }   
     public ICollection<OrderItem> OrderItems { get; set; } 
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }   

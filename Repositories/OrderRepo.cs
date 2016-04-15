@@ -41,8 +41,7 @@ namespace nwfw.Repositories
       {
         return _context.Orders
         .Include(c => c.OrderItems)
-        .OrderByDescending(c => c.OrderDate)
-        .ToList();
+        .OrderByDescending(c => c.OrderDate);
       }
       catch (Exception ex)
       {
