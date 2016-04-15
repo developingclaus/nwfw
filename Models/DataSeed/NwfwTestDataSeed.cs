@@ -56,6 +56,11 @@ namespace nwfw.Models.DataSeed
         var wood2 = new Wood(){WoodName = "Elm"};
         var wood3 = new Wood(){WoodName = "Maple"};
         
+        var prod1 = new Product()
+        {
+          ProductName = "Stablized Maple Blank 2x3x4"
+        };
+        
         // var product1 = new Product()
         // {
         //   ProductName = "Stabilized Oak 2x3x4",
@@ -86,7 +91,7 @@ namespace nwfw.Models.DataSeed
           OrderDate = new DateTime(2016, 4, 13), 
           FulfillDate = new DateTime(2016, 4, 20),
           // Customer = customer1, 
-          // Vendor = vendor1, 
+          Vendor = vendor1, 
           // OrderType = orderType1, 
           // OrderStatus = orderStatus1
         };

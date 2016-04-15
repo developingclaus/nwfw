@@ -13,6 +13,7 @@ namespace nwfw.ViewModels
     public string NwfwOrderId { get; set; }
     public DateTime OrderDate { get; set; }
     public DateTime FulfillDate { get; set; }
+    public Vendor Vendor { get; set; } 
     public ICollection<OrderItem> OrderItems { get; set; } 
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }   

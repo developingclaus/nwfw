@@ -25,7 +25,7 @@ namespace nwfw.Repositories
     {
       try
       {
-        return _context.Orders.OrderByDescending(o => o.OrderDate).ToList();        
+        return _context.Orders.Include(o => o.Vendor).OrderByDescending(o => o.OrderDate).ToList();        
       }
       catch (Exception ex)
       {
