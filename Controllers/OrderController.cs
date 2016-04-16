@@ -30,7 +30,7 @@ namespace nwfw.Controllers
     public JsonResult Get()
     {
       var orders = _repo.GetAllOrdersWithOrderItems();
-      // return Json(orders);
+      
       return Json(_mapper.Map<IEnumerable<OrderViewModel>>(orders));
     }
 
@@ -39,7 +39,8 @@ namespace nwfw.Controllers
     public JsonResult Get(int id)
     {
       var order = _repo.GetOrderWithOrderItemsById(id);
-      return Json(_mapper.Map<OrderViewModel>(order));
+      var orderVm = _mapper.Map<OrderViewModel>(order);
+      return Json(orderVm);
     }
 
     // POST api/order

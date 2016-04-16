@@ -10,7 +10,7 @@ namespace nwfw.ViewModels
   {
     public int Id { get; set; }
     public string WoodName { get; set; }
-    public ICollection<Product> Products { get; set; }        
+    // public ICollection<ProductViewModel> Products { get; set; }        
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }    
   }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.Logging;
 using nwfw.Models;
 using nwfw.Repositories.Interfaces;
@@ -23,7 +24,7 @@ namespace nwfw.Repositories
     {
       try
       {
-        return _context.Vendors.OrderBy(v => v.VendorLastName).ToList();        
+        return _context.Vendors.Include(v => v.Orders).OrderBy(v => v.VendorLastName).ToList();        
       }
       catch (Exception ex)
       {

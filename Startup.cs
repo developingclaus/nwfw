@@ -27,6 +27,7 @@ namespace nwfw
         .AddJsonFile("config.json")
         .AddEnvironmentVariables();
       Configuration = builder.Build();
+      
       _mapperConfiguration = new MapperConfiguration(cfg =>
       {
           cfg.AddProfile(new AutoMapperProfileConfiguration());
@@ -41,7 +42,9 @@ namespace nwfw
       services.AddMvc().AddJsonOptions(options => {
         options.SerializerSettings.ContractResolver = 
           new CamelCasePropertyNamesContractResolver();
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
       });
+      
       
       // services.AddLogging();
       

@@ -3,7 +3,7 @@
 With an Order endpoint as example:
 
 ######1. Add ViewModel
-Create file ViewModels/OrderViewModel.cs, bringing in what fields you want from Models/Order.cs
+Create file ViewModels/OrderViewModel.cs, bringing in what fields you want from Models/Order.cs. Make sure to change any collections or navigation properties to refer to the view model entities, not the model entities. E.g. OrderViewModel has an ICollection<OrderItemViewModel> property, not ICollection<OrderItem> property.  
 ######2. Register Mapping
 Add mapping of Model to ViewModel (and reverse) in Mappings/AutoMapperProfileConfiguration.cs
 ######3. Create Repo and Interface
