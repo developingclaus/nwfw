@@ -42,6 +42,8 @@ namespace nwfw.Repositories
         return _context.Orders
         .Include(c => c.OrderItems)
         .Include(c => c.Vendor)
+        .Include(c => c.OrderStatus)
+        .Include(c => c.Customer)
         .OrderByDescending(c => c.OrderDate)
         .ToList();
       }
@@ -87,6 +89,8 @@ namespace nwfw.Repositories
     {
       try
       {
+        newOrder.CreatedDate = DateTime.UtcNow;
+        newOrder.ModifiedDate = DateTime.UtcNow;
         _context.Orders.Add(newOrder);        
       }
       catch (Exception ex)
@@ -100,6 +104,7 @@ namespace nwfw.Repositories
     {
       try
       {
+        updatedOrder.ModifiedDate = DateTime.UtcNow;
         _context.Orders.Update(updatedOrder);
       }
       catch (Exception ex)

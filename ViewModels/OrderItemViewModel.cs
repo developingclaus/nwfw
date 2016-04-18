@@ -10,7 +10,8 @@ namespace nwfw.ViewModels
     public int Id { get; set; }
     public double DiscountPercent { get; set; }
     public int Quantity { get; set; }
-    public DateTime CreatedDate { get; set; }
-    public DateTime ModifiedDate { get; set; }
+    public ProductNavViewModel Product { get; set; }
+    // public DateTime CreatedDate { get; set; }
+    // public DateTime ModifiedDate { get; set; }
   }
 }

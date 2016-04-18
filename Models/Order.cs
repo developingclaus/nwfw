@@ -14,7 +14,7 @@ namespace nwfw.Models
     public OrderStatus OrderStatus { get; set; }   
     public Customer Customer { get; set; }   
     public Vendor Vendor { get; set; }   
-    public ICollection<OrderItem> OrderItems { get; set; } 
+    public virtual ICollection<OrderItem> OrderItems { get; set; } 
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }   
     
