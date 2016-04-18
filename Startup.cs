@@ -58,8 +58,10 @@ namespace nwfw
       services.AddScoped<ICustomerRepo, CustomerRepo>();
       services.AddScoped<IOrderRepo, OrderRepo>();
       services.AddScoped<IOrderItemRepo, OrderItemRepo>();
-      services.AddScoped<IWoodRepo, WoodRepo>();
+      services.AddScoped<IProductRepo, ProductRepo>();
+      services.AddScoped<IProductTypeRepo, ProductTypeRepo>();
       services.AddScoped<IVendorRepo, VendorRepo>();
+      services.AddScoped<IWoodRepo, WoodRepo>();
       
       services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
     }

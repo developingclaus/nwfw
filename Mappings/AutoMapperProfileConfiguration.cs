@@ -15,9 +15,11 @@ namespace nwfw.Mappings
       CreateMap<Customer, CustomerViewModel>().ReverseMap();
       CreateMap<Order, OrderViewModel>().ReverseMap();
       CreateMap<OrderItem, OrderItemViewModel>().ReverseMap();
-      CreateMap<Wood, WoodViewModel>().ReverseMap();
+      CreateMap<Product, ProductViewModel>().ReverseMap();
+      CreateMap<ProductType, ProductTypeViewModel>().ReverseMap();
       CreateMap<Vendor, VendorWithoutOrdersViewModel>().ReverseMap();
       CreateMap<Vendor, VendorViewModel>().ReverseMap();
+      CreateMap<Wood, WoodViewModel>().ReverseMap();
     }
   }
 }
