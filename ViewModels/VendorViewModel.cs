@@ -12,7 +12,7 @@ namespace nwfw.ViewModels
     public string VendorFirstName { get; set; }
     public string VendorLastName { get; set; }
     public string VendorCompanyName { get; set; }
-    public ICollection<OrderViewModel> Orders { get; set; }
+    public virtual ICollection<OrderViewModel> Orders { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }
   }

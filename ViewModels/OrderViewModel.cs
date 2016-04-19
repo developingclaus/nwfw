@@ -13,9 +13,9 @@ namespace nwfw.ViewModels
     public string NwfwOrderId { get; set; }
     public DateTime OrderDate { get; set; }
     public DateTime FulfillDate { get; set; }    
-    public OrderStatusNavViewModel OrderStatus { get; set; }
-    public CustomerNavViewModel Customer { get; set; }  
-    public VendorNavViewModel Vendor { get; set; } 
-    public ICollection<OrderItemViewModel> OrderItems { get; set; } 
+    public virtual OrderStatusNavViewModel OrderStatus { get; set; }
+    public virtual CustomerNavViewModel Customer { get; set; }  
+    public virtual VendorNavViewModel Vendor { get; set; } 
+    public virtual ICollection<OrderItemViewModel> OrderItems { get; set; } 
   }
 }

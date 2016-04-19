@@ -39,12 +39,21 @@ namespace nwfw.Repositories
     {
       try
       {
+        
         return _context.Orders
-        .Include(c => c.OrderItems)
-        .Include(c => c.Vendor)
-        .Include(c => c.OrderStatus)
-        .Include(c => c.Customer)
-        .OrderByDescending(c => c.OrderDate)
+        
+        .Include(o => o.OrderItems)
+        .ThenInclude(oi => oi.Product)
+        .ThenInclude(p => p.Wood)
+        
+        .Include(o => o.OrderItems)
+        .ThenInclude(oi => oi.Product)
+        .ThenInclude(p => p.ProductType)
+        
+        .Include(o => o.Vendor)
+        .Include(o => o.OrderStatus)
+        .Include(o => o.Customer)
+        .OrderByDescending(o => o.OrderDate)
         .ToList();
       }
       catch (Exception ex)

@@ -10,9 +10,9 @@ namespace nwfw.ViewModels
     public int Id { get; set; }
     public string ProductName { get; set; }      
     public double ProductBasePrice { get; set; }  
-    public WoodViewModel Wood { get; set; }    
-    public ProductTypeViewModel ProductType { get; set; }    
-    public ICollection<OrderItemViewModel> OrderItems { get; set; }    
+    public virtual WoodViewModel Wood { get; set; }    
+    public virtual ProductTypeViewModel ProductType { get; set; }    
+    public virtual ICollection<OrderItemViewModel> OrderItems { get; set; }    
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }
   }

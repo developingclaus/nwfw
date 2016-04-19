@@ -7,11 +7,12 @@ namespace nwfw.Models
   {
     public int Id { get; set; }
     public string WoodName { get; set; }
-    public ICollection<Product> Products { get; set; }        
+    public virtual ICollection<Product> Products { get; set; }        
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }
     public Wood()
     {
+      // this.Products = new List<Product>();
     }
   }
 }

@@ -7,10 +7,10 @@ namespace nwfw.ViewModels
 {
   public class ProductNavViewModel
   {
+    // public int Id { get; set; }
     public string ProductName { get; set; }      
     public double ProductBasePrice { get; set; }  
-    // public WoodViewModel Wood { get; set; }    
-    // public ProductTypeViewModel ProductType { get; set; } 
-    
+    public virtual WoodViewModel Wood { get; set; }    
+    public virtual ProductTypeViewModel ProductType { get; set; }
   }
 }

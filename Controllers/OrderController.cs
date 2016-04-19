@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using nwfw.Models;
 using nwfw.Repositories.Interfaces;
 using nwfw.ViewModels;
+using Microsoft.Data.Entity;
 
 namespace nwfw.Controllers
 {

@@ -10,16 +10,17 @@ namespace nwfw.Models
     public string NwfwOrderId { get; set; }
     public DateTime OrderDate { get; set; }
     public DateTime FulfillDate { get; set; }
-    public OrderType OrderType { get; set; }   
-    public OrderStatus OrderStatus { get; set; }   
-    public Customer Customer { get; set; }   
-    public Vendor Vendor { get; set; }   
+    public virtual OrderType OrderType { get; set; }   
+    public virtual OrderStatus OrderStatus { get; set; }   
+    public virtual Customer Customer { get; set; }   
+    public virtual Vendor Vendor { get; set; }   
     public virtual ICollection<OrderItem> OrderItems { get; set; } 
     public DateTime CreatedDate { get; set; }
     public DateTime ModifiedDate { get; set; }   
     
     public Order()
     {
+      // this.OrderItems = new List<OrderItem>();
     }
   }
 }

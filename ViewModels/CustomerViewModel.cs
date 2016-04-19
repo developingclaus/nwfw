@@ -16,6 +16,6 @@ namespace nwfw.ViewModels
     public string CustomerLastName { get; set; }
     [StringLength(100)]
     public string CustomerCompanyName { get; set; }
-    public ICollection<OrderViewModel> Orders { get; set; }
+    public virtual ICollection<OrderViewModel> Orders { get; set; }
   }
 }
