@@ -10,7 +10,7 @@ namespace nwfw.ViewModels
     // public int Id { get; set; }
     public string ProductName { get; set; }      
     public double ProductBasePrice { get; set; }  
-    public virtual WoodViewModel Wood { get; set; }    
-    public virtual ProductTypeViewModel ProductType { get; set; }
+    public virtual WoodNavViewModel Wood { get; set; }    
+    public virtual ProductTypeNavViewModel ProductType { get; set; }
   }
 }
